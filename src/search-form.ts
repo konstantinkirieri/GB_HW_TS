@@ -35,7 +35,7 @@ export function renderSearchFormBlock (dateStart = '', dateEnd = ''): void {
         <div class="row">
           <div>
             <label for="city">Город</label>
-            <input id="city" type="text" disabled value="Санкт-Петербург" />
+            <input id="city" type="text" name="city" disabled value="Санкт-Петербург" />
             <input type="hidden" disabled value="59.9386,30.3141" />
           </div>
           <!--<div class="providers">
@@ -54,7 +54,7 @@ export function renderSearchFormBlock (dateStart = '', dateEnd = ''): void {
           </div>
           <div>
             <label for="max-price">Макс. цена суток</label>
-            <input id="max-price" type="text" value="" name="price" class="max-price" />
+            <input id="max-price" type="text" value="0" name="price" class="max-price" />
           </div>
           <div>
             <div><button>Найти</button></div>
