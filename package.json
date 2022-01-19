@@ -1,6 +1,7 @@
 {
   "name": "gb_typescript_homework",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "build": "rm -rf public/scripts && tsc",
     "build:dev": "rm -rf public/scripts && tsc -p tsconfig-dev.json",
@@ -14,5 +15,8 @@
     "eslint": "^8.5.0",
     "http-server": "^14.0.0",
     "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.8"
   }
 }
