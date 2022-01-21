@@ -12,8 +12,8 @@ export function renderSearchFormBlock (dateStart = '', dateEnd = ''): void {
   const defaultStart = getDate(y, m, d, 1)
   const defaultEnd = getDate(y, m, d, 3)
 
-  function getLastDayOfMonth(year, month) {
-    const date = new Date(year, month + 1, 0);
+  function getLastDayOfMonth(year: string, month: string) {
+    const date = new Date(+year, +month + 1, 0);
     return String(date.getDate());
   }
   

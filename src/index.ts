@@ -3,9 +3,6 @@ import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock } from './user.js'
 import { renderToast } from './lib.js'
 import { processingSearchFormData, getUserData, getFavoritesAmount } from './homeWork2.js'
-import { getTodosByCount } from './homeWork3.js'
-
-getTodosByCount(7)
 
 window.addEventListener('DOMContentLoaded', () => {
   const user = getUserData()
@@ -19,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const form = document.forms[0]
 
-  form.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', (e) => {
     e.preventDefault()
     processingSearchFormData(form)
   })

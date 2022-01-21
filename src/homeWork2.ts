@@ -9,9 +9,10 @@ type UserData = {
   avatarUrl: string
 }
 
-function isUserData(obj: object): obj is UserData {
+function isUserData(obj: object | null): obj is UserData {
   const keyOfUserData = ['username', 'avatarUrl']
-
+  if(obj == null)
+    return false
   for(const key of keyOfUserData) {
     const condition = key in obj
     if(!condition) return false
@@ -24,23 +25,25 @@ function isUserData(obj: object): obj is UserData {
 export function getUserData(): UserData {
   const userDataJSON: unknown = localStorage.getItem('user')
 
-  if(typeof userDataJSON !== 'string')
+  if (typeof userDataJSON !== 'string')
     return { username: 'none', avatarUrl: '/img/avatar.png' }
 
   const userData: unknown = JSON.parse(userDataJSON)
 
-  if(typeof userData !== 'object')
+  if (typeof userData !== 'object')
     return { username: 'none', avatarUrl: '/img/avatar.png' }
 
-  if(isUserData(userData))
+  if (isUserData(userData))
     return userData
 
   return { username: 'none', avatarUrl: '/img/avatar.png' }
 }
 
-export function getFavoritesAmount(): number {
-  const favoritesAmount = +localStorage.getItem('favoritesAmount')
-  if(!isNaN(favoritesAmount)) return favoritesAmount
+export function getFavoritesAmount(): number | undefined {
+  const favoritesAmount = localStorage.getItem('favoritesAmount')
+  if (favoritesAmount && !isNaN(+favoritesAmount))
+    return +favoritesAmount
+  return
 }
 
 //2
@@ -61,10 +64,10 @@ interface SearchFormData {
 
 export function processingSearchFormData(searchForm: HTMLFormElement): void {
   const searchFormData: SearchFormData = {
-    city: searchForm.city.value,
-    checkin: searchForm.checkin.value,
-    checkout: searchForm.checkout.value,
-    price: +searchForm.price.value,
+    city: searchForm['city'].value,
+    checkin: searchForm['checkin'].value,
+    checkout: searchForm['checkout'].value,
+    price: +searchForm['price'].value,
   }
 
   const callback = (arg: Error | Array<Place>) => {
